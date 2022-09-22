@@ -2,14 +2,20 @@
 
 This is a book record management    API Backed for the management of records and books 
 
+
+# API Documentation link
+https://documenter.getpostman.com/view/23235371/2s7ZE8p3mH
+
+
+
 # Routes and Endpoints
 
 ## /users 
-POST: Create a new user 
-GET: Get all list of users
+POST: Create a new user ✅
+GET: Get all list of users ✅
 
 ## /users/{id}
-GET: Get a user by id
+GET: Get a user by id ✅
 PUT: update a user by id 
 DELETE: Delete a user by id (check if he/she still has an issued book)(is there any fine to be paid)
 
