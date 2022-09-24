@@ -169,5 +169,68 @@ router.put('/:id', (req,res) => {
 
 });
 
+/**
+ * Route: /books/issued/with-fine
+ * Method: GET
+ * Description: Get issued book with fine
+ * Access: Public
+ * parameters: none
+
+ */
+
+router.get("/issued/with-fine", (req,res) => {
+    const usersWithIssuedBooksWithFine = users.filter((each) => {
+        if(each.issuedBook) return each;
+    });
+
+    const issuedBooksWithFine = [];
+
+    usersWithIssuedBooksWithFine.forEach((each) => {
+        const book = books.find((book) => book.id === each.issuedBook);
+
+        book.issuedBy = each.name;
+        book.issuedDate = each.issuedDate;
+        book.returnDate = each.returnDate;
+
+        const getDateInDays = (data = "") => {
+            let date;
+              if (data === "") {
+                date = new Date();
+            } else {
+                date = new Date(data);
+
+            }
+            let days = Math.floor(
+                date / (1000*60*60*24));  // we use 1000 to convert it in milliseconds
+
+                return days;
+        };
+
+            let returnDate = getDateInDays(each.returnDate);
+            let currentDate = getDateInDays();
+
+            if (returnDate < currentDate){
+                issuedBooksWithFine.push(book);
+            }
+        });
+
+            if (issuedBooksWithFine.length === 0) {
+                return res.status(404).json({
+                    success: false,
+                    message: "No books with fine",
+
+                });
+            }
+
+            return res.status(200).json({
+                success: true,
+                Data: issuedBooksWithFine,
+            })
+
+
+    
+                                              
+});
+
 //default export
 module.exports = router;
