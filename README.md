@@ -35,10 +35,10 @@ PUT: Update a book by id ✅
 
 
 ## /books/issued/by-user
-GET: Get all issued books
+GET: Get all issued books ✅
 
 ## /books/issued/withFine
-GET: Get all issued books with fine
+GET: Get all issued books with fine ✅
 
 ## Subscription Types
 Basic (3 months)
